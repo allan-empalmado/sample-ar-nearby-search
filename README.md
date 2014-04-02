@@ -1,69 +1,55 @@
-html5-augmented-reality-app
-===========================
+Augmented Reality Location Search
+=======================
+Simple Augmented Reality App implemented using HTML5 and Cordova API with US cities overlay. Uses Cordova API to access device compass, accelerometer and geolocation.
 
-Simple Augmented Reality App implemented using HTML5 and Cordova with Foursquare data overlay (and US cities overlay)
 
-Uses Foursquare API to search for locations and plots the location on Google Maps.
-Uses Cordova API to access device compass, accelerometer and geolocation.
+Intel(R) XDK
+-------------------------------------------
+This sample is part of the Intel(R) XDK. 
+Please sign up at http://software.intel.com/en-us/html5.
+To see the technical detail of the sample, please visit the sample article page 
+at http://software.intel.com/en-us/html5/articles/augmented-reality-mobile-app-with-html5. 
 
-Must be built using Intel XDK or use Phonegap build.
+Application Files
+-----------------
+* app.json
+* index.html
+* readme.md
+* screenshot.png
+* lib/*
 
-App developed during 2 day XDK hackathon at Intel.
-Developed using Intel XDK tool - http://html5dev-software.intel.com
+Copyright (c) 2014, Intel Corporation. All rights reserved.
 
-=
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
 
-*_app must be tested using Intel XDK's App Preview or build app using Intel XDK._
+- Redistributions of source code must retain the above copyright notice, 
+  this list of conditions and the following disclaimer.
 
-=
+- Redistributions in binary form must reproduce the above copyright notice, 
+  this list of conditions and the following disclaimer in the documentation 
+  and/or other materials provided with the distribution.
 
-###index_UScities.html###
-Shows 12 US Cities in list view, map view and augmented reality mode. Uses Cordova APIs for accelerometer, compass and geolocation.
+- Neither the name of Intel Corporation nor the names of its contributors 
+  may be used to endorse or promote products derived from this software 
+  without specific prior written permission.
 
-=
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
+OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-###index_UScities_xdkAR.html###
-Shows 12 US Cities in list view, map view and augmented reality mode. Uses Cordova APIs for accelerometer, compass and geolocation. Uses intel.xdk JS bridge API to enable camera in background and overlays data in augmented reality mode. 
+jQuery
+--------------------------
+* jquery-1.8.2.min.js (jquery-1.8.2.min.js)
 
-=
+* source:   http://jquery.com/
+* source:   http://jquerymobile.com/
+* license:  http://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt
 
-###index_foursquare.html###
-Shows foursquare places data in list view, map view and augmented reality mode. Uses Cordova APIs for accelerometer, compass and geolocation.
-
-*_requires you to sign up for foursquare developer account and add client id and client secret to the source code_
-
-=
-
-###index_foursquare_xdkAR.html###
-Shows foursquare places data in list view, map view and augmented reality mode. Uses Cordova APIs for accelerometer, compass and geolocation. Uses intel.xdk JS bridge API to enable camera in background and overlays data in augmented reality mode. 
-
-*_requires you to sign up for foursquare developer account and add client id and client secret to the source code_
-
-=
-
-__index.html = index_UScities.html__
-
-=
-
-Screenshots
-=
-
-###foursquare listView###
-![alt tag](https://raw.github.com/krisrak/html5-augmented-reality-app/master/screenshots/foursquare_listView.png)  
-
--
-
-###foursquare mapView###
-![alt tag](https://raw.github.com/krisrak/html5-augmented-reality-app/master/screenshots/foursquare_mapView.png)
- 
-- 
-   
-###foursquare XDK AR mode###
-![alt tag](https://raw.github.com/krisrak/html5-augmented-reality-app/master/screenshots/foursquare_xdkARmode.png)  
-
--
-
-###US Cities AR mode###
-![alt tag](https://raw.github.com/krisrak/html5-augmented-reality-app/master/screenshots/UScities_ARmode.png)
-
--

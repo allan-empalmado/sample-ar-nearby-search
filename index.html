@@ -213,7 +213,7 @@ function stopCompass() {
 // onSuccess: Get the current heading
 function onCompassSuccess(heading) {
     var directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
-    var direction = directions[Math.abs(parseInt((heading.magneticHeading) / 45) + 1)];
+    var direction = directions[Math.abs(parseInt((heading.magneticHeading) / 45) + 0)];
     document.getElementById('compass').innerHTML = heading.magneticHeading + "<br>" + direction;
     document.getElementById('direction').innerHTML = direction;
     var degree = heading.magneticHeading;
