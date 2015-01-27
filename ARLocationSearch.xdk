@@ -35,14 +35,14 @@
     "cordovaPlugins": [
       {
         "id": "org.apache.cordova.geolocation",
-        "version": "0.3.5",
+        "version": "0.3.7",
         "selectedState": "Included",
         "data": {},
         "paramvals": {}
       },
       {
         "id": "org.apache.cordova.splashscreen",
-        "version": "0.2.5",
+        "version": "0.3.0",
         "selectedState": "Included",
         "data": {},
         "paramvals": {}
@@ -56,7 +56,7 @@
       },
       {
         "id": "org.apache.cordova.device-motion",
-        "version": "0.2.4",
+        "version": "0.2.7",
         "selectedState": "Included",
         "data": {},
         "paramvals": {}
