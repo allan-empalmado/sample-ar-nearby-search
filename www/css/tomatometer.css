@@ -1,0 +1,64 @@
+/*
+ * Copyright (c) 2012, Intel Corporation. All rights reserved.
+ * File revision: 15 October 2012
+ * Please see http://software.intel.com/html5/license/samples 
+ * and the included README.md file for license terms and conditions.
+ *
+ * Code adapted from http://images.rottentomatoes.com/assets.html
+ */
+
+
+/*-- Tomatometer bar manipulation ---------------------------------------*/
+
+/* baseline Tomatometer bar settings */
+.tomatometer, .tomatometer > span {
+    display: block;
+    /* do not stretch beyond native width */
+    max-width: 188px;
+    /* horizontal margins to space */
+    margin: 0px 5px 0px 15px; 
+    /* set up bar sprite */
+    background: transparent url('http://images.rottentomatoescdn.com/images/redesign/tomatometer_bar_bg.png') no-repeat 0 0;
+    background-size: 100% 60px;
+    /* select background bar from bar sprite */
+    height: 20px;
+}
+
+/* overlay fresh/rotten bar on top of background bar */
+.tomatometer > span {
+    float: left;
+    margin: 0;
+    width: 0;
+}
+
+/* use fresh bar from bar sprite */
+.tomatometer.Fresh > span, .tomatometer.Certified > span {
+    background-position: 0 -20px;
+}
+
+/* use rotten bar from bar sprite */
+.tomatometer.Rotten > span{
+    background-position:0 -40px;
+}
+
+/*-- icon manipulation --------------------------------------------------*/
+
+/* set up icon sprite for selecting an icon */
+.icon {
+    display: inline-block;
+    vertical-align: text-bottom;
+    background:transparent url('http://images.rottentomatoescdn.com/images/redesign/icons-v2.png') no-repeat -312px -160px;
+}
+
+/* dimensions for various icon sizes */
+.icon.huge { width:64px; height:64px; }
+.icon.big { width:48px; height:48px; }
+.icon.medium { width:32px; height:32px; }
+.icon.small { width:24px; height:24px; }
+.icon.tiny { width:16px; height:16px; }
+
+/* selection of individual icon from icon sprite */
+.icon.tiny.Fresh, .icon.tiny.Certified { background-position:-256px -144px; }
+.icon.tiny.Rotten { background-position:-272px -144px; }
+.icon.small.Fresh, .icon.small.Certified { background-position:-288px -48px;}
+.icon.small.Rotten { background-position:-288px -96px;}

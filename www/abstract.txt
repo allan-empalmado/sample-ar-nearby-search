@@ -1,0 +1,3 @@
+This jQuery Mobile sample uses the Rotten Tomatoes API to create a paginated 
+list of current DVD rentals. It demonstrates how to populate a listview with 
+live data from a web API, and how to dynamically generate pages.
