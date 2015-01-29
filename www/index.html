@@ -1,210 +1,240 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    
-    <!--
-     * Copyright (c) 2012, Intel Corporation. All rights reserved.
-     * File revision: 15 October 2012
-     * Please see http://software.intel.com/html5/license/samples 
-     * and the included README.md file for license terms and conditions.
-    -->
-    <meta name="copyright" content="&copy; 2012, Intel Corporation. All rights reserved." />
-
-    <!-- stylesheets -->
-    <!-- note: use jquery.mobile-1.1.1.min.css for production -->
-    <link rel="stylesheet" type="text/css" href="vendor/jquery.mobile/jquery.mobile-1.1.1.css" />
-    <link rel="stylesheet" type="text/css" href="css/tomatometer.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    
-    <!-- scripts -->
-    <!-- note: use jquery-1.8.0.min.js & jquery.mobile-1.1.1.min.js for production -->
-    <script type="text/javascript" src="vendor/mustache/mustache.js"></script>
-    <script type="text/javascript" src="vendor/jquery/jquery-1.8.0.js"></script>
-    <script type="text/javascript" src="vendor/jquery.jsonp/jquery.jsonp.js"></script>
-    <script type="text/javascript" src="vendor/jquery.mobile/jquery.mobile-1.1.1.js"></script>
-    <script src="intelxdk.js"></script>
+    <title>Nearby</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type">
+    <meta content="&copy; 2013, Intel Corporation. All rights reserved." name=
+    "Copyright">
+    <meta content="Rakshith Krishnappa" name="Author"><!--
+ * Copyright (c) 2013, Intel Corporation. All rights reserved.
+ * Please see http://software.intel.com/html5/license/samples 
+ * and the included README.md file for license terms and conditions.
+-->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name=
+    "viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="lib/jquery/jquery-1.8.2.min.js"></script>
     <script src="cordova.js"></script>
+    <script src="intelxdk.js"></script>
     <script src="xhr.js"></script>
-    <script type="text/javascript" src="app/app.js"></script>
-    <!-- title of app -->
-    <title>DVD Rentals</title>
-    
-    <!-- mobile layout sized appropriately to viewport width and not zoomable -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
+    <script src="js/main.js"></script>
+    <style>
+        body {
+            background-color:#fff;
+            font-family:Arial;
+            margin:0;
+            overflow-x:hidden;
+            -webkit-user-select:none
+        }
+
+        .navbar {
+            background-color:#222;
+            height:40px;
+            padding:10px;
+            text-align:center;
+            color:#fff;
+            font-size:20px;
+            font-weight:700;
+            line-height:40px
+        }
+
+        .navtitle {
+            text-align:center;
+            margin:auto
+        }
+
+        .navbtn {
+            background-color:#333;
+            padding:5px 10px;
+            height:30px;
+            color:#fff;
+            font-size:18px;
+            font-weight:700;
+            line-height:30px;
+            border-radius:4px;
+            border:1px solid #666
+        }
+
+        #actionbtn {
+            float:right
+        }
+
+        #viewbtn {
+            float:left
+        }
+
+        .query {
+            padding:10px;
+            background-color:#aaa;
+            border-bottom:1px solid #fff;
+            font-size:14px;
+            font-weight:700;
+            color:#222
+        }
+
+        .item {
+            padding:20px 10px;
+            background-color:#eee;
+            border-bottom:1px solid #fff;
+            font-size:18px;
+            color:#333;
+            text-shadow:0 1px #fff
+        }
+
+        .searchbox {
+            padding:5px;
+            background-color:#eee;
+            border-bottom:1px solid #fff
+        }
+
+        #search {
+            box-sizing:border-box;
+            width:100%;
+            height:40px;
+            font-size:16px;
+            border-radius:20px;
+            border:1px solid #bbb
+        }
+
+        .mapView {
+            display:none
+        }
+
+        #map {
+            height:200px
+        }
+
+        #arView,#topView {
+            display:none
+        }
+
+        #arView {
+            padding:30px 0;
+            height:70px;
+            text-align:center
+        }
+
+        .arMessage {
+            color:#ddd;
+            font-size:14px
+        }
+
+        #spot {
+            text-align:center
+        }
+
+        .name,.distance {
+            text-shadow:0 1px #666
+        }
+
+        .name {
+            padding:15px;
+            font-weight:700;
+            background-color:#c22;
+            border-radius:40px;
+            margin-bottom:10px
+        }
+
+        #direction {
+            color:#d55;
+            font-size:20px;
+            padding:15px;
+            font-weight:700;
+            background-color:#a22;
+            border-radius:40px;
+            display:inline-block;
+            margin-bottom:10px;
+            width:40px;
+            line-height:40px
+        }
+
+        .distance {
+            font-size:14px;
+            font-weight:400
+        }
+
+        #debug {
+            border:1px solid #999;
+            display:none
+        }
+
+        .heading {
+            background-color:#999;
+            color:#eee;
+            padding:5px
+        }
+
+        #compass,#accelerometer,#geolocation {
+            padding:5px
+        }
+    </style>
 </head>
 
-<body>
-    
-    <!-- initial page to obtain developer key -->
-    <div data-role="page" id="loginPage" data-theme="a">
+<body id="body">
+    <div id="arView">
+        <div class="arMessage">
+            &uarr;<br>
+            Tilt down to see all places
+        </div><br>
 
-        <!-- header button to display information dialog page #aboutMsg -->
-        <div data-role="header">
-            <a href="#aboutMsg" data-rel="dialog" data-icon="info" data-iconpos="notext" class="ui-btn-right">Refresh</a>
-        </div>
+        <div class="arMessage">
+            &larr; Move the device around to find spots &rarr;
+        </div><br>
 
-        <div data-role="content">
-            <!-- form to submit developer key so that app has permission to access Flixster web API -->
-            <form action="#" method="get" id="login">
-                <fieldset>
-                    <!-- input field to enter key -->
-                    <label for="devkey">Please enter your Flixster developer key to begin:</label>
-                    <input type="text" name="devkey" id="devkey"/>
-                </fieldset>
-                <fieldset class="ui-grid-a">
-                    <!-- button to display instructions dialog #getKeyMsg -->
-                    <div class="ui-block-a"><a href="#getKeyMsg" data-role="button">Get Key</a></div>
-                    <!-- button to submit developer key -->
-                    <div class="ui-block-b"><button type="submit" data-theme="b">Submit</button></div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-    
-    <!-- information dialog page to display Flixster trademark notice -->
-    <div data-role="dialog" id="aboutMsg">
-        <div data-role="header" data-theme="d">
-            <h1>About</h1>
-        </div>
-        <div data-role="content" data-theme="c">
-            <p>Flixster, Rotten Tomatoes, the Fresh Logo, and the Rotten Logo are trademarks or registered trademarks of Flixster, Inc. in the United States and other countries.</p>
-            <a href="page-dialogs.html" data-role="button" data-mini="true" data-rel="back" data-theme="b">OK</a>       
-        </div>
+        <div id="direction"></div><br>
+
+        <div id="spot"></div>
     </div>
 
-    <!-- dialog page with instructions on how to obtain developer key -->
-    <div data-role="dialog" id="getKeyMsg">
-        <div data-role="header" data-theme="d">
-            <h1>Get Key</h1>
+    <div id="topView">
+        <div class="navbar">
+            <div class="navbtn" id="actionbtn">
+                &crarr;
+            </div>
+
+            <div class="navbtn" id="viewbtn" onclick="toggleView()">
+                Map
+            </div>
+
+            <div class="navtitle">
+                Nearby
+            </div>
         </div>
-        <div data-role="content" data-theme="c">
-            <p>Please register for a Flixster developer key at http://developer.rottentomatoes.com/apps/register</p>
-            <a href="page-dialogs.html" data-role="button" data-mini="true" data-rel="back" data-theme="b">OK</a>       
+
+        <div class="listView">
+            <div class="listItems"></div>
+        </div>
+
+        <div class="mapView">
+            <div id="map"></div>
         </div>
     </div>
 
-    <!-- error dialog page to be displayed when invalid developer key is submitted -->
-    <div data-role="dialog" id="loginErrorMsg">
-        <div data-role="header" data-theme="d">
-            <h1>Error</h1>
+    <div id="debug">
+        <div class="heading">
+            Geolocation
         </div>
-        <div data-role="content" data-theme="c">
-            <p>
-                Key <span id="wrongkey"></span> is not valid. 
-                Or you did not start Chrome with the &#8209;&#8209;allow&#8209;running&#8209;insecure&#8209;content flag 
-                (necessary for this particular sample; please see http://tinyurl.com/jqmlistview for more detail).<br><br> 
-                Please try again.
-            </p>
-            <a href="page-dialogs.html" data-role="button" data-rel="back" data-theme="b">OK</a>       
-        </div>
-    </div>
 
-    <!-- skeletons for primary pages to be created upon application initialization -->
-    <!-- content of each to be filled on demand during page navigation             -->
-    
-    <!-- template for primary page skeleton -->
-    <script type="text/html" id="primaryPageSkeletonTmpl">
-        <div data-role="page" class="primaryPage">            
-            
-            <!-- header -->
-            <!-- top-right button to refresh entire app with new movie data from Flixster web API -->
-            <div data-role="header" data-id="app-header">
-                <h1>DVD Rentals</h1>
-                <a href="#" data-icon="refresh" data-iconpos="notext" class="ui-btn-right refreshBtn">Refresh</a>
-            </div>
-            
-            <!-- content -->
-            <!-- to contain listview dynamically created with movie data from Flixster web API -->
-            <div data-role="content">
-            </div>
-            
-            <!-- footer -->
-            <!-- navbar to link previous and next pages of movie data -->
-            <div data-role="footer" data-theme="a">
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="#" class="prev">Previous</a></li>
-                        <li><a href="#" class="next">Next</a></li>
-                    </ul>
-                </div>
-            </div>
-            
+        <div id="geolocation"></div>
+
+        <div class="heading">
+            Compass
         </div>
-    </script>
-    
-    <!-- template for content of primary pages -->
-    <script type="text/html" id="primaryPageContentTmpl">
-        <ul data-role="listview" class="movies">
-            <!-- mustache section -->
-            {{#.}}
-                <!-- template for each item in given json data -->
-                <li><a href="#secondaryPage" class="movie">
-                    <!-- movie thumbnail image -->
-                    <img src={{posters.thumbnail}} />
-                    <!--title of the movie -->
-                    <h3>{{title}}</h3>
-                    <!-- Rotten Tomatoes critics rating, numeric along with corresponding icon -->
-                    <p>
-                        TOMATOMETER<sup>&reg;</sup> {{ratings.critics_score}}
-                        <i class="icon tiny {{&ratings.critics_rating}}"></i>
-                    </p>
-                </a></li>
-            {{/.}}
-        </ul>
-    </script>
-    
-    <!-- single copy of secondary page skeleton, content and title to be filled on demand -->    
-    <div data-role="page" id="secondaryPage">
-        
-        <!-- header -->
-        <div data-role="header" data-id="app-header">
-            <h1 id="title"></h1>
-            <a href="#" data-rel="back" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-left"></a>
+
+        <div id="compass"></div>
+
+        <div class="heading">
+            Accelerometer
         </div>
-        
-        <!-- content -->
-        <div data-role="content">
+
+        <div id="accelerometer"></div>
+
+        <div class="heading">
+            Log
         </div>
-        
-        <!-- footer -->
-        <div data-role="footer" data-position="fixed">
-        </div>
-        
+
+        <div id="log"></div>
     </div>
-    
-    <!-- template for content of secondary pages -->
-    <script type="text/html" id="secondaryPageContentTmpl">
-        <!-- basic movie info highlighted at the top -->
-        <div class="highlight-container">
-            <!-- age-appropriateness rating and runtime in minutes -->
-            <div class="highlight-heading">
-                {{mpaa_rating}}, {{runtime}} minutes
-            </div>
-            <!-- first two cast memebers -->
-            <div class="highlight-details">
-                {{abridged_cast.0.name}}, {{abridged_cast.1.name}}
-            </div>
-            <!-- Rotten Tomatoes critics rating -->
-            <div class="highlight-rating">
-                <!-- numeric rating with corresponding icon -->
-                <div>
-                    <i class="icon small {{&ratings.critics_rating}}"></i> 
-                    {{ratings.critics_score}}
-                </div>
-                <!-- corresponding Tomatometer bar, to be filled with appropriate color and length based on actual rating -->
-                <div>
-                    <div class="tomatometer {{&ratings.critics_rating}}">
-                        <span style="width: {{&ratings.critics_score}};"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- synopsis of the movie -->
-        <p class="synopsis">{{synopsis}}</p>
-    </script>
-    
 </body>
-
 </html>
