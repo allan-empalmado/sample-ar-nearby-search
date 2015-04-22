@@ -5,8 +5,8 @@
       "type": "Demo",
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "https://edge-intel.s3.amazonaws.com/jsapp/production/release-2014-ww51/sample-ar-nearby-search/sample.zip",
-      "projectGuid": "00000000-0000-0000-0000-000000000000",
-      "lastModifiedDate": 1423606171216,
+      "projectGuid": "16dc2742-da88-4284-bd7c-038a7ef4d443",
+      "lastModifiedDate": 1429727090347,
       "creationDate": 1423605516237
     },
     "sourceDirectory": "www",
@@ -18,31 +18,39 @@
     "cordovaPlugins": [
       {
         "id": "org.apache.cordova.geolocation",
-        "version": "?",
+        "version": "0.3.11",
         "selectedState": "Included",
         "data": {},
-        "paramvals": {}
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
       },
       {
         "id": "org.apache.cordova.splashscreen",
-        "version": "?",
+        "version": "0.3.5",
         "selectedState": "Included",
         "data": {},
-        "paramvals": {}
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
       },
       {
         "id": "org.apache.cordova.device-orientation",
-        "version": "?",
+        "version": "0.3.10",
         "selectedState": "Included",
         "data": {},
-        "paramvals": {}
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
       },
       {
         "id": "org.apache.cordova.device-motion",
-        "version": "?",
+        "version": "0.2.11",
         "selectedState": "Included",
         "data": {},
-        "paramvals": {}
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
       }
     ],
     "serviceMethods": [],
@@ -69,9 +77,10 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "?",
-        "crosswalkVersion_": "?",
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
         "appVersion_": "0.0.1",
+        "appAuthor_": "Intel XDK",
         "appDescription_": "A sample app developed with HTML5 and uses Cordova* APIs to access device's compass, accelerometer and geolocation information.",
         "appVersionCode_": "1"
       },
@@ -97,8 +106,9 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "?",
-        "crosswalkVersion_": "?",
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appAuthor_": "Intel XDK",
         "appVersion_": "0.0.1",
         "appDescription_": "A sample app developed with HTML5 and uses Cordova* APIs to access device's compass, accelerometer and geolocation information.",
         "appVersionCode_": "1"
@@ -124,8 +134,9 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "?",
-        "crosswalkVersion_": "?",
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appAuthor_": "Intel XDK",
         "appVersion_": "0.0.1",
         "appDescription_": "A sample app developed with HTML5 and uses Cordova* APIs to access device's compass, accelerometer and geolocation information."
       },
@@ -147,11 +158,91 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "?",
-        "crosswalkVersion_": "?",
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
         "appAuthor_": "Intel XDK",
         "appVersion_": "0.0.0.1",
         "appDescription_": "A sample app developed with HTML5 and uses Cordova* APIs to access device's compass, accelerometer and geolocation information."
+      },
+      "WebApp": {
+        "platform_": "webapp",
+        "runtime_": "W3C",
+        "name_": "WebApp",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "ARLocationSearch",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Firefox": {
+        "platform_": "firefoxos",
+        "runtime_": "W3C on Firefox OS",
+        "name_": "Firefox",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "ARLocationSearch",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Chrome": {
+        "platform_": "chromeos",
+        "runtime_": "W3C on Chrome OS",
+        "name_": "Chrome",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "ARLocationSearch",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Facebook": {
+        "platform_": "facebook",
+        "runtime_": "W3C on Facebook",
+        "name_": "Facebook",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "ARLocationSearch",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
       }
     },
     "gameAssetDirectory": "asset",
